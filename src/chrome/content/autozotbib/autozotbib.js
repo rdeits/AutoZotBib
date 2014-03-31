@@ -22,26 +22,32 @@ Zotero.AutoZotBib = {
 		// var all_items = Zotero.Items.getAll(true)
 		// var collection = Zotero.Collections.get("NHDB2RC3");
 		// var all_items = collection.getChildItems();
-		var s = new Zotero.Search();
-		s.addCondition('joinMode', 'any'); // joinMode defaults to 'all' as per the
-	                                       // advanced search GUI
+		var rules = prefs.getCharPref("bibtex_rules").trim().split('\n');
+		for (var i=0; i < rules.length; i++) {
+			split_rule = rules[i].split(':');
+			tagname = split_rule[0];
+			filename = split_rule[1];
+			var s = new Zotero.Search();
+			s.addCondition('joinMode', 'any'); // joinMode defaults to 'all' as per the
+		                                       // advanced search GUI
 
-	    var tagname = prefs.getCharPref("bibtex_tag");
-	    s.addCondition('tag', 'is', tagname);
-	    var results = s.search();
-	    var all_items = Zotero.Items.get(results);
+		    // var tagname = prefs.getCharPref("bibtex_tag");
+		    s.addCondition('tag', 'is', tagname);
+		    var results = s.search();
+		    var all_items = Zotero.Items.get(results);
 
-		var file = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsILocalFile);
-		var filename = prefs.getCharPref("bibtex_filename");
-		file.initWithPath(filename);
+			var file = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsILocalFile);
+			// var filename = prefs.getCharPref("bibtex_filename");
+			file.initWithPath(filename);
 
-		var translator = new Zotero.Translate('export');
-		trans_guid = prefs.getCharPref("bibtex_translator_guid");
-		//translator.setTranslator('DA47106C-1265-4D19-8E75-0A4CD77CD369'); // BibTeX
-		translator.setTranslator(trans_guid);
-		translator.setItems(all_items);
-		translator.setLocation(file);
-		translator.translate();
+			var translator = new Zotero.Translate('export');
+			trans_guid = prefs.getCharPref("bibtex_translator_guid");
+			//translator.setTranslator('DA47106C-1265-4D19-8E75-0A4CD77CD369'); // BibTeX
+			translator.setTranslator(trans_guid);
+			translator.setItems(all_items);
+			translator.setLocation(file);
+			translator.translate();
+		}
   	},
 
 	// Callback implementing the notify() method to pass to the Notifier

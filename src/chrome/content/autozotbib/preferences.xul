@@ -10,15 +10,20 @@
 
   <prefpane id="autozotbib-prefpane" style="padding: 1em;">
     <preferences>
-      <preference id="azb-bibtex-tag" name="extensions.autozotbib.bibtex_tag" type="string"/>
+<!--       <preference id="azb-bibtex-tag" name="extensions.autozotbib.bibtex_tag" type="string"/>
       <preference id="azb-bibtex-filename" name="extensions.autozotbib.bibtex_filename" type="string"/>
+ -->      
+      <preference id="azb-bibtex-rules" name="extensions.autozotbib.bibtex_rules" type="string"/>
       <preference id="azb-automatic" name="extensions.autozotbib.automatic" type="bool"/>
     </preferences>
     
-    <caption label="Path to the file in which the auto-exported BibTeX entries should be placed"/>
+<!--     <caption label="Path to the file in which the auto-exported BibTeX entries should be placed"/>
     <textbox preference="azb-bibtex-filename" id="defaultStartupHomepageField" />
     <caption label="Tag which auto-exported entries must have"/>
     <textbox preference="azb-bibtex-tag" id="defaultStartupHomepageField" />
+ -->    
+    <caption label="Tags and ouptut files (one entry per line in tagname:filename format)"/>
+    <textbox multiline="true" cols="5" preference="azb-bibtex-rules" id="defaultStartupHomepageField" />
     <checkbox label="Automatically send to bibtex" preference="azb-automatic"/>
   </prefpane>
 
