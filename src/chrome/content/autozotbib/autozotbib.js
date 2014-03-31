@@ -19,9 +19,6 @@ Zotero.AutoZotBib = {
   	},
 
 	exportAll: function() {
-		// var all_items = Zotero.Items.getAll(true)
-		// var collection = Zotero.Collections.get("NHDB2RC3");
-		// var all_items = collection.getChildItems();
 		var rules = prefs.getCharPref("bibtex_rules").trim().split('\n');
 		for (var i=0; i < rules.length; i++) {
 			split_rule = rules[i].split(':');
@@ -31,8 +28,9 @@ Zotero.AutoZotBib = {
 			s.addCondition('joinMode', 'any'); // joinMode defaults to 'all' as per the
 		                                       // advanced search GUI
 
-		    // var tagname = prefs.getCharPref("bibtex_tag");
-		    s.addCondition('tag', 'is', tagname);
+		    if (!(tagname == "*")) {
+			    s.addCondition('tag', 'is', tagname);
+			}
 		    var results = s.search();
 		    var all_items = Zotero.Items.get(results);
 
