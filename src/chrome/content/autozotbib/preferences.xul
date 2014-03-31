@@ -10,15 +10,15 @@
 
   <prefpane id="autozotbib-prefpane" style="padding: 1em;">
     <preferences>
+      <preference id="azb-bibtex-tag" name="extensions.autozotbib.bibtex_tag" type="string"/>
       <preference id="azb-bibtex-filename" name="extensions.autozotbib.bibtex_filename" type="string"/>
       <preference id="azb-automatic" name="extensions.autozotbib.automatic" type="bool"/>
     </preferences>
     
     <caption label="Path to the file in which the auto-exported BibTeX entries should be placed"/>
-    <hbox  style="margin: 0"  align="center">
-    <textbox preference="azb-bibtex-filename" flex="1" id="defaultStartupHomepageField" />
-    <button id="azb-choose-file" label="Choose" oncommand="var file=chooseFile(); if(file!='') {prefs.setCharPref('bibtex_filename',file);}"/>
-    </hbox>
+    <textbox preference="azb-bibtex-filename" id="defaultStartupHomepageField" />
+    <caption label="Tag which auto-exported entries must have"/>
+    <textbox preference="azb-bibtex-tag" id="defaultStartupHomepageField" />
     <checkbox label="Automatically send to bibtex" preference="azb-automatic"/>
   </prefpane>
 
